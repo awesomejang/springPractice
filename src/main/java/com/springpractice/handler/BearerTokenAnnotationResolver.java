@@ -33,11 +33,13 @@ public class BearerTokenAnnotationResolver implements HandlerMethodArgumentResol
 
         Object dto = parameter.getParameterType().getConstructor().newInstance();
 
-        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            return null;
+        if (authorizationHeader == null) {
+            throw new NullPointerException("Authorization Header is null");
         }
 
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+        if (!authorizationHeader.startsWith("Bearer ")) {
+            return null;
+        }else {
             String jwtToken = authorizationHeader.substring(7);
 
             for (Field field : dto.getClass().getDeclaredFields()) {
@@ -47,6 +49,7 @@ public class BearerTokenAnnotationResolver implements HandlerMethodArgumentResol
                 }
             }
         }
+
         return dto;
     }
 }
