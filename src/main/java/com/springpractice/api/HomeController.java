@@ -1,7 +1,7 @@
-package com.springpractice.home.controller;
+package com.springpractice.api;
 
-import com.springpractice.annotation.BearerToken;
-import com.springpractice.annotation.LogExecutionTime;
+import com.springpractice.common.annotation.BearerToken;
+import com.springpractice.common.annotation.LogExecutionTime;
 import com.springpractice.dtos.BearerTokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

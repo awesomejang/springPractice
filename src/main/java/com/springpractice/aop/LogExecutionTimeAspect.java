@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LogExecutionTimeAspect {
 
-    @Around("@annotation(com.springpractice.annotation.LogExecutionTime)")
+    @Around("@annotation(com.springpractice.common.annotation.LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();

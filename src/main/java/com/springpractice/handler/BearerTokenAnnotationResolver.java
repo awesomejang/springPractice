@@ -1,6 +1,6 @@
 package com.springpractice.handler;
 
-import com.springpractice.annotation.BearerToken;
+import com.springpractice.common.annotation.BearerToken;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
