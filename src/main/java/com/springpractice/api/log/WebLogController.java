@@ -17,7 +17,6 @@ public class WebLogController {
 
     @PostMapping
     public CommonResponseDto<String> PostRequest(@RequestBody String requestData) {
-        log.info("Request data: {}", requestData);
         return CommonResponseDto.success("POST request success");
     }
 }
