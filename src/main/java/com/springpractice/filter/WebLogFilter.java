@@ -44,16 +44,15 @@ public class WebLogFilter extends AbstractRequestLoggingFilter {
         logger.info("========================================");
 
         response.getOutputStream().write(cachedContent);
-
     }
 
     @Override
     protected void beforeRequest(HttpServletRequest request, String message) {
-        logger.info("Request: {}", message);
+
     }
 
     @Override
     protected void afterRequest(HttpServletRequest request, String message) {
-        logger.info("Response: {}", message);
+
     }
 }
