@@ -26,6 +26,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2' // 인터페이스이기에 구현체(impl) 필요. JWT를 생성하고 검증하는 데 필요한 기본적인 인터페이스들을 제공, 실제로 토큰을 생성하거나 서명(signing)을 추가하거나 파싱(parsing)할 때 사용하는 JwtParser, JwtBuilder와 같은 인터페이스들이 여기 포함
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2' // jjwt-api의 구현체
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2' // JWT에서 클레임 데이터를 효율적으로 처리하기 위해 JSON 형식으로 데이터를 변환할 필요
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
