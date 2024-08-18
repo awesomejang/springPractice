@@ -20,6 +20,10 @@ public class CommonResponseDto<T> {
         return new CommonResponseDto<>(data, null, CommonResponseStatusEnum.SUCCESS);
     }
 
+    public static <T> CommonResponseDto<T> success(T data, String message) {
+        return new CommonResponseDto<>(data, message, CommonResponseStatusEnum.SUCCESS);
+    }
+
     public static <T> CommonResponseDto<T> fail(String message) {
         return new CommonResponseDto<>(null, message, CommonResponseStatusEnum.FAIL);
     }

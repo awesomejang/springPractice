@@ -38,8 +38,11 @@ public class WebLogFilter extends AbstractRequestLoggingFilter {
         logger.info("========================================");
         logger.info("REQUEST METHOD: [{}]", request.getMethod());
         logger.info("REQUEST URL: {}", request.getRequestURL());
-        String requestBody = new String(cachedBodyHttpServletRequest.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-        logger.info("REQUEST BODY: {}", objectMapper.writeValueAsString(objectMapper.readValue(requestBody, Object.class)));
+
+        if (!"GET".equalsIgnoreCase(request.getMethod())) {
+            String requestBody = new String(cachedBodyHttpServletRequest.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            logger.info("REQUEST BODY: {}", objectMapper.writeValueAsString(objectMapper.readValue(requestBody, Object.class)));
+        }
         logger.info("RESPONSE BODY: {}", new String(cachedBodyHttpServletResponse.getCachedContent(), StandardCharsets.UTF_8));
         logger.info("========================================");
 
