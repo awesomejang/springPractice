@@ -4,6 +4,9 @@ import com.springpractice.common.JwtTokenProvider;
 import com.springpractice.common.RedisService;
 import com.springpractice.dtos.AuthTokenRequestDto;
 import com.springpractice.dtos.CommonResponseDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +43,19 @@ public class AuthController {
         redisService.saveRefreshToken(authTokenRequestDto.clientId(), refreshToken);
 
         return CommonResponseDto.success(Map.of("accessToken", accessToken, "refreshToken", refreshToken));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<CommonResponseDto<Map<String, String>>> refreshToken(@RequestBody Map<String, String> payload) {
+
+        if (payload.get("refreshToken") == null) {
+//            return ResponseEntity.badRequest().body(CommonResponseDto.fail("Refresh token is required"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CommonResponseDto.fail("Refresh token is required"));
+        }
+
+        return ResponseEntity.ok(CommonResponseDto.success());
+
+
     }
 
 }

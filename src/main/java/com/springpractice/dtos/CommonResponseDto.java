@@ -16,6 +16,10 @@ public class CommonResponseDto<T> {
         this.status = status;
     }
 
+    public static <T> CommonResponseDto<T> success() {
+        return new CommonResponseDto<>(null, null, CommonResponseStatusEnum.SUCCESS);
+    }
+
     public static <T> CommonResponseDto<T> success(T data) {
         return new CommonResponseDto<>(data, null, CommonResponseStatusEnum.SUCCESS);
     }
