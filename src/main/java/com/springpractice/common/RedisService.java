@@ -23,8 +23,8 @@ public class RedisService {
         redisTemplate.opsForValue().set(String.format(apiJwtProperties.getKeyPattern(), clientId), refreshToken, apiJwtProperties.getRefreshExpirationDay(), TimeUnit.DAYS);
     }
 
-    public String getRefreshToken(String username) {
-        return redisTemplate.opsForValue().get(username);
+    public String getRefreshToken(String clientId) {
+        return redisTemplate.opsForValue().get(String.format(apiJwtProperties.getKeyPattern(), clientId));
     }
 
     public void deleteRefreshToken(String username) {

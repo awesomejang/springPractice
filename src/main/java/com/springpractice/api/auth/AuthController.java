@@ -47,19 +47,10 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public ResponseEntity<CommonResponseDto<Map<String, String>>> refreshToken(@RequestBody Map<String, String> payload) {
-
         if (payload.get("refreshToken") == null) {
-//            return ResponseEntity.badRequest().body(CommonResponseDto.fail("Refresh token is required"));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CommonResponseDto.fail("Refresh token is required"));
         }
 
-
-
-
-
-        return ResponseEntity.ok(CommonResponseDto.success());
-
-
+        return ResponseEntity.ok(CommonResponseDto.success(jwtTokenProvider.refreshToken(payload.get("refreshToken"))));
     }
-
 }
