@@ -28,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping
-    public CommonResponseDto<Map<String, String>> generateToken(@Validated @RequestBody AuthTokenRequestDto authTokenRequestDto) {
+    public ResponseEntity<CommonResponseDto<Map<String, String>>> generateToken(@Validated @RequestBody AuthTokenRequestDto authTokenRequestDto) {
         // TODO: RestControllerAdvice -> 401 같은거 처리
         // TODO: clientId, clientSecret 검증 -> DB에 저장해놓고 뭐 상태 값 같은거 비교, 유효기간
         /**
@@ -42,7 +42,7 @@ public class AuthController {
         String refreshToken = jwtTokenProvider.generateToken(authTokenRequestDto);
         redisService.saveRefreshToken(authTokenRequestDto.clientId(), refreshToken);
 
-        return CommonResponseDto.success(Map.of("accessToken", accessToken, "refreshToken", refreshToken));
+        return ResponseEntity.ok(CommonResponseDto.success(Map.of("accessToken", accessToken, "refreshToken", refreshToken)));
     }
 
     @PostMapping("/refresh")
