@@ -1,5 +1,6 @@
 package com.springpractice.api.auth;
 
+import com.springpractice.api.auth.service.UserAuthService;
 import com.springpractice.common.JwtTokenProvider;
 import com.springpractice.common.RedisService;
 import com.springpractice.dtos.AuthTokenRequestDto;
@@ -21,23 +22,21 @@ public class AuthController {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final RedisService redisService;
+    private final UserAuthService userAuthService;
 
-    public AuthController(JwtTokenProvider jwtTokenProvider, RedisService redisService) {
+    public AuthController(JwtTokenProvider jwtTokenProvider, RedisService redisService, UserAuthService userAuthService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.redisService = redisService;
+        this.userAuthService = userAuthService;
     }
 
     @PostMapping
     public ResponseEntity<CommonResponseDto<Map<String, String>>> generateToken(@Validated @RequestBody AuthTokenRequestDto authTokenRequestDto) {
-        // TODO: RestControllerAdvice -> 401 같은거 처리
-        // TODO: clientId, clientSecret 검증 -> DB에 저장해놓고 뭐 상태 값 같은거 비교, 유효기간
-        /**
-         * // ID, PW는 무조건 통과
-         *String username = loginRequest.getUsername();
-         *
-         *         // Access Token 생성
-         * String accessToken = jwtTokenProvider.generateToken(username
-         */
+        boolean isValidClient = userAuthService.checkValidUser(authTokenRequestDto.clientId(), authTokenRequestDto.clientSecret());
+        if (!isValidClient) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail("Invalid client id or client secret"));
+        }
+
         String accessToken = jwtTokenProvider.generateToken(authTokenRequestDto);
         String refreshToken = jwtTokenProvider.generateToken(authTokenRequestDto);
         redisService.saveRefreshToken(authTokenRequestDto.clientId(), refreshToken);

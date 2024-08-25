@@ -2,12 +2,14 @@ package com.springpractice.dao.entites;
 
 import com.springpractice.dao.enums.AuthStatusEnum;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_auth")
-public class UserAuthEntity {
+@Getter
+public class UserAuthEntity extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +28,20 @@ public class UserAuthEntity {
     @Column(name = "expiration_date", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime expirationDate;
 
-    @Column(name = "created_at", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime createdAt;
+//    @Column(name = "created_date", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+//    private LocalDateTime createdDate;
+//
+//    @Column(name = "updated_dated", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+//    private LocalDateTime updatedDate;
 
-    @Column(name = "updated_at", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime updatedAt;
+    protected UserAuthEntity() {
+    }
+
+    public UserAuthEntity(String clientId, String clientSecret, AuthStatusEnum authStatus, LocalDateTime expirationDate) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.authStatus = authStatus;
+        this.expirationDate = expirationDate;
+    }
+
 }
