@@ -28,12 +28,6 @@ public class UserAuthEntity extends BaseTimeEntity{
     @Column(name = "expiration_date", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime expirationDate;
 
-//    @Column(name = "created_date", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-//    private LocalDateTime createdDate;
-//
-//    @Column(name = "updated_dated", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-//    private LocalDateTime updatedDate;
-
     protected UserAuthEntity() {
     }
 
