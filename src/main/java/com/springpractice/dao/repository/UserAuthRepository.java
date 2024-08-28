@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface UserAuthRepository extends CrudRepository<UserAuthEntity, Long> {
 
-    public Optional<UserAuthEntity> findUserByClientIdAndClientSecret(String clientId, String clientSecret);
+    Optional<UserAuthEntity> findUserByClientIdAndClientSecret(String clientId, String clientSecret);
 
 }
