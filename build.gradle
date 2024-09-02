@@ -40,14 +40,35 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-def querydslDir = "$buildDir/generated/querydsl"
+// gradle내의 buildDirectory에 generated/querydsl 디렉토리를 생성
+def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
+
+
+tasks.withType(JavaCompile).configureEach {
+    // annotation processor를 통해 생성된 파일의 디렉토리를 지정
+    // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.compile.CompileOptions.html
+    options.generatedSourceOutputDirectory.set(querydslDir)
+    // deprecated
+//    options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+
+//    destinationDirectory.set(file(querydslDir)) // 모든 클래스 파일들이 다 여기에 생성됨
+}
+
+/**
+ * 소스 코드와 리소스 파일의 그룹을 정의하는데 사용
+ * main, test 두 가지 sourceSet이 존재, 각각 애플리케이션, 테스트 코드를 의미
+ * main.java.srcDirs += [ querydslDir ] : main sourceSet의 java 파일들이 생성되는 디렉토리를 추가, 기본적으로 src/main/java 디렉토리가 포함된다.
+ * 기존의 소스 디렉토리에 추가적인 디렉토리를 포함시키는 것을 의미, Gradle은 이 디렉토리(querydslDir)에 있는 자바 파일들도 빌드의 일부로 인식
+ * querydslDir 디렉토리에 생성된 Q 클래스 파일들이 프로젝트의 다른 소스 파일들과 함께 컴파일되고, 빌드 과정에서 활용될 수 있게 된다.
+ * sourceSets에 Q 파일이 포함된 디렉토리를 추가하여 컴파일 및 배포 과정에 이 파일들이 포함되도록 설정
+ */
 sourceSets {
     main.java.srcDirs += [ querydslDir ]
 }
 
-tasks.withType(JavaCompile) {
-    options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
-}
+/**
+ * clean 작업을 수행할 때 querydslDir 디렉토리를 삭제
+ */
 clean.doLast {
     file(querydslDir).deleteDir()
 }
