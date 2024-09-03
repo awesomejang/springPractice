@@ -40,6 +40,10 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+//dependencyManagement.importedProperties.forEach({key, value -> {
+//    println "${key} : ${value}"
+//}})
+
 // gradle내의 buildDirectory에 generated/querydsl 디렉토리를 생성
 def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
 
