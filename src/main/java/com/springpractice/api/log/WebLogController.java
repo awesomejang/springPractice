@@ -19,4 +19,12 @@ public class WebLogController {
     public CommonResponseDto<String> PostRequest(@RequestBody String requestData) {
         return CommonResponseDto.success("POST request success");
     }
+
+    @PostMapping("/test")
+    public CommonResponseDto<String> logTest(@RequestBody String requestData) {
+        log.info("=====시작=======");
+        log.info("=====중간=======");
+        log.info("=====종료=======");
+        return CommonResponseDto.success("POST request success");
+    }
 }
