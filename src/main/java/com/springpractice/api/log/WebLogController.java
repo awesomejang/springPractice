@@ -21,8 +21,9 @@ public class WebLogController {
     }
 
     @PostMapping("/test")
-    public CommonResponseDto<String> logTest(@RequestBody String requestData) {
+    public CommonResponseDto<String> logTest(@RequestBody String requestData) throws InterruptedException {
         log.info("=====시작=======");
+        Thread.sleep(2000);
         log.info("=====중간=======");
         log.info("=====종료=======");
         return CommonResponseDto.success("POST request success");

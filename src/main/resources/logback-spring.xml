@@ -1,0 +1,17 @@
+<configuration>
+
+    <!-- 콘솔에 로그를 출력할 appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 로그 패턴 설정 -->
+            <!-- %X{requestId}는 MDC에 저장된 requestId 값을 의미함 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{requestId}] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 루트 로거 설정 -->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
