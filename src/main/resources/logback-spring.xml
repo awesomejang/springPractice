@@ -5,7 +5,6 @@
         <encoder>
             <!-- 로그 패턴 설정 -->
             <!-- %X{requestId}는 MDC에 저장된 requestId 값을 의미함 -->
-
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{requestId}] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>

@@ -1,6 +1,8 @@
 package com.springpractice.dao.entites;
 
+import com.springpractice.dao.converter.UserAuthGradeConverter;
 import com.springpractice.dao.enums.AuthStatusEnum;
+import com.springpractice.dao.enums.UserAuthGradeEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -27,6 +29,10 @@ public class UserAuthEntity extends BaseTimeEntity{
 
     @Column(name = "expiration_date", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime expirationDate;
+
+    @Convert(converter = UserAuthGradeConverter.class)
+    @Column(name = "user_grade", nullable = false, columnDefinition = "VARCHAR(20)")
+    private UserAuthGradeEnum userAuthGrade;
 
     protected UserAuthEntity() {
     }
