@@ -32,16 +32,31 @@ public class UserAuthRepositoryTest {
 
     @Test
     public void insertUserAuthTest() {
-        UserAuthEntity jang = new UserAuthEntity("jang", "1234", AuthStatusEnum.INACTIVE, LocalDateTime.now());
-        userAuthRepository.save(jang);
+        UserAuthEntity user = new UserAuthEntity.Builder()
+                .clientId("jang")
+                .clientSecret("1234")
+                .authStatus(AuthStatusEnum.INACTIVE)
+                .expirationDate(LocalDateTime.now())
+                .build();
+        userAuthRepository.save(user);
 
         em.flush();
         em.clear();
 
-        Optional<UserAuthEntity> userAuthEntity = userAuthRepository.findById(jang.getId());
+        Optional<UserAuthEntity> userAuthEntity = userAuthRepository.findById(user.getId());
         Assertions.assertTrue(userAuthEntity.isPresent());
 
         Assertions.assertEquals("jang", userAuthEntity.get().getClientId());
         Assertions.assertEquals("1234", userAuthEntity.get().getClientSecret());
+    }
+
+    @Test
+    public void converterTest() {
+//        new UserAuthEntity(
+//                "jang",
+//                "1234",
+//                AuthStatusEnum.INACTIVE,
+//                LocalDateTime.now()
+//        )
     }
 }

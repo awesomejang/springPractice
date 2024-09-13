@@ -23,6 +23,4 @@ public enum UserAuthGradeEnum {
         }
         throw new IllegalArgumentException("Unknown grade: " + grade);
     }
-
-
 }
