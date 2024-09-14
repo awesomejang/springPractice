@@ -40,8 +40,8 @@ public class UserAuthEntity extends BaseTimeEntity{
     private UserAuthEntity(Builder builder) {
         this.clientId = builder.clientId;
         this.clientSecret = builder.clientSecret;
-        this.authStatus = builder.authStatus;
-        this.expirationDate = builder.expirationDate;
+        this.authStatus = (builder.authStatus == null) ? AuthStatusEnum.INACTIVE : builder.authStatus;
+        this.expirationDate = (builder.expirationDate == null) ? LocalDateTime.now() : builder.expirationDate;
         this.userAuthGrade = (builder.userAuthGrade == null) ? UserAuthGradeEnum.NORMAL : builder.userAuthGrade;
     }
 
@@ -51,6 +51,12 @@ public class UserAuthEntity extends BaseTimeEntity{
         private AuthStatusEnum authStatus;
         private LocalDateTime expirationDate;
         private UserAuthGradeEnum userAuthGrade;
+
+        // 이렇게 하면 해결은 되겠지만 빌더 패턴의 장점을 활용하지 못한다.
+        // 최대한 엔티티 생성자에서 해결하는게 좋을듯 물론 초기화 값이 필수여야 한다면 어쩔수 없을것같긴하다.
+//        public Builder(LocalDateTime expirationDate) {
+//            this.expirationDate = expirationDate;
+//        }
 
         public Builder clientId(String clientId) {
             this.clientId = clientId;

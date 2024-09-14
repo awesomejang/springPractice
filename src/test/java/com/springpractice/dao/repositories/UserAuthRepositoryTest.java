@@ -2,6 +2,7 @@ package com.springpractice.dao.repositories;
 
 import com.springpractice.dao.entites.UserAuthEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
+import com.springpractice.dao.enums.UserAuthGradeEnum;
 import com.springpractice.dao.repository.UserAuthRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -52,11 +54,22 @@ public class UserAuthRepositoryTest {
 
     @Test
     public void converterTest() {
-//        new UserAuthEntity(
-//                "jang",
-//                "1234",
-//                AuthStatusEnum.INACTIVE,
-//                LocalDateTime.now()
-//        )
+        UserAuthEntity user = new UserAuthEntity.Builder()
+                .clientId("jang")
+                .clientSecret("1234")
+                .userAuthGrade(UserAuthGradeEnum.SENIOR)
+                .build();
+
+        userAuthRepository.save(user);
+        em.flush();
+        em.clear();
+
+        Optional<UserAuthEntity> byId = userAuthRepository.findById(user.getId());
+        if (byId.isEmpty()) {
+            throw new IllegalArgumentException("UserAuthEntity is empty");
+        } else {
+            UserAuthEntity userAuthEntity = byId.get();
+            Assertions.assertEquals(userAuthEntity.getUserAuthGrade().getGrade(), "senior");
+        }
     }
 }
