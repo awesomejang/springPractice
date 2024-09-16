@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.7'
     id 'io.spring.dependency-management' version '1.1.5'
-
 }
 
 group = 'com'
@@ -71,25 +70,15 @@ sourceSets {
 }
 
 /**
- * clean 작업을 수행할 때 querydslDir 디렉토리를 삭제
+ * clean 작업을 수행한 후 후속작업으로 수행 ( querydslDir 디렉토리를 삭제 )
  */
 clean.doLast {
     file(querydslDir).deleteDir()
 }
 
-//querydsl {
-//    jpa = true
-//    querydslSourcesDir = querydslDir
-//}
-
-//configurations {
-//    querydsl.extendsFrom compileClasspath
-//}
-
-//compileQuerydsl {
-//    options.annotationProcessorPath = configurations.querydsl
-//}
-
+/**
+ * clean 작업의 일부로 실행
+ */
 clean {
     delete file(querydslDir)
 }
