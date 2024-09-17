@@ -5,6 +5,7 @@ import com.springpractice.common.JwtTokenProvider;
 import com.springpractice.common.RedisService;
 import com.springpractice.dtos.AuthTokenRequestDto;
 import com.springpractice.dtos.CommonResponseDto;
+import com.springpractice.excetpions.InCorrectUserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +34,8 @@ public class AuthController {
     public ResponseEntity<CommonResponseDto<Map<String, String>>> generateToken(@Validated @RequestBody AuthTokenRequestDto authTokenRequestDto) {
         boolean isValidClient = userAuthService.checkValidUser(authTokenRequestDto.clientId(), authTokenRequestDto.clientSecret());
         if (!isValidClient) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail("Invalid client id or client secret"));
+            throw new InCorrectUserException("Invalid client id or client secret");
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail("Invalid client id or client secret"));
         }
 
         String accessToken = jwtTokenProvider.generateToken(authTokenRequestDto);
