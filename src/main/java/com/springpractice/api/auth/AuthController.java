@@ -35,7 +35,6 @@ public class AuthController {
         boolean isValidClient = userAuthService.checkValidUser(authTokenRequestDto.clientId(), authTokenRequestDto.clientSecret());
         if (!isValidClient) {
             throw new InCorrectUserException("Invalid client id or client secret");
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail("Invalid client id or client secret"));
         }
 
         String accessToken = jwtTokenProvider.generateToken(authTokenRequestDto);
