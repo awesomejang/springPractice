@@ -9,6 +9,9 @@
         </encoder>
     </appender>
 
+<!--    <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />-->
+<!--    <logger name="org.hibernate.SQL" level="TRACE" />-->
+
     <!-- 루트 로거 설정 -->
     <root level="info">
         <appender-ref ref="CONSOLE" />
