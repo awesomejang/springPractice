@@ -22,10 +22,11 @@ public class UserAuthService {
     public boolean checkValidUser(String clientId, String clientSecret) {
         Optional<UserAuthEntity> userAuthEntity = userAuthRepository.findActiveUserAuth(clientId, clientSecret);
 
-        if (userAuthEntity.isEmpty()) {
-            logger.warn("Invalid client id or client secret target user: {}", clientId);
-            return false;
-        }
-        return true;
+        return userAuthEntity.isPresent();
+//        if (userAuthEntity.isEmpty()) {
+////            logger.warn("Invalid client id or client secret target user: {}", clientId);
+//            return false;
+//        }
+//        return true;
     }
 }
