@@ -33,8 +33,7 @@ public class AuthController {
     @PostMapping
     public ResponseEntity<CommonResponseDto<Map<String, String>>> generateToken(@Validated @RequestBody AuthTokenRequestDto authTokenRequestDto) {
         boolean isValidClient = userAuthService.checkValidUser(authTokenRequestDto.clientId(), authTokenRequestDto.clientSecret());
-        String temp = null;
-        temp.startsWith("asdasd");
+
         if (!isValidClient) {
             throw new InCorrectUserException("Invalid client id or client secret | user: " + authTokenRequestDto.clientId());
         }

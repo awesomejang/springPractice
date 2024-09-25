@@ -24,7 +24,8 @@ public class RestExceptionControllerAdvice {
 
     @ExceptionHandler(InCorrectUserException.class)
     public ResponseEntity<CommonResponseDto<Void>> handleInCorrectUserException(InCorrectUserException exception) {
-        log.error("InCorrectUserException: {}", exception.getMessage());
+//        log.error("InCorrectUserException: {}", exception.getMessage());
+        log.error("InCorrectUserException: ", exception);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail(messageSource.getMessage("incorrect.user.info", null, Locale.getDefault())));
     }
 

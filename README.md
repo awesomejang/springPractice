@@ -15,3 +15,6 @@ spring framework를 사용하며 여러 기능을 구현해 보고 학습하는 
     - HttpServletRequestWrapper 활용
     - HttpServletResponseWrapper 활용
 - JWT, Redis를 활용한 API 인증 로직 구현
+- logback, MDC를 활용한 로그 시인성 개선 
+- Entity Enum Converter 도입 작업 진행
+- ResponseBodyAdvice를 활용한 Response body custom
