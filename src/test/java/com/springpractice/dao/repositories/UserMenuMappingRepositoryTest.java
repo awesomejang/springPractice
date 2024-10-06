@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -27,7 +28,7 @@ public class UserMenuMappingRepositoryTest {
 
         Assertions.assertFalse(menuMappingByUserAuthEntityId.isEmpty());
 
-        assertThat(menuMappingByUserAuthEntityId).allMatch(entity -> entity instanceof UserMenuMappingEntity);
+        assertThat(menuMappingByUserAuthEntityId).allMatch(Objects::nonNull);
 
         assertThat(menuMappingByUserAuthEntityId).allSatisfy(entity -> Assertions.assertEquals(33L, entity.getUserAuthEntity().getId()));
 

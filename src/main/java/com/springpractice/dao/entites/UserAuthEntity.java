@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_auth")
@@ -33,6 +35,9 @@ public class UserAuthEntity extends BaseTimeEntity{
     @Convert(converter = UserAuthGradeConverter.class)
     @Column(name = "user_grade", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'NORMAL'")
     private UserAuthGradeEnum userAuthGrade = UserAuthGradeEnum.NORMAL;
+
+    @OneToMany(mappedBy = "userAuthEntity", fetch = FetchType.LAZY)
+    private final Set<UserMenuMappingEntity> userMenuMappingEntities = new HashSet<>();
 
     protected UserAuthEntity() {
     }
