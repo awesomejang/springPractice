@@ -121,13 +121,5 @@ public class UserAuthRepositoryTest {
         }else {
             throw new IllegalStateException("userMenuMappingEntities is not loaded");
         }
-
-//        userAuthRepository.findById(33L).ifPresent(userAuthEntity -> {
-//            Set<UserMenuMappingEntity> userMenuMappingEntities = userAuthEntity.getUserMenuMappingEntities();
-//            Assertions.assertFalse(userMenuMappingEntities.isEmpty());
-//            userMenuMappingEntities.forEach(userMenuMappingEntity -> {
-//                logger.info("menuId = {}", userMenuMappingEntity.getUserMenuEntity().getMenuUrl());
-//            });
-//        });
     }
 }
