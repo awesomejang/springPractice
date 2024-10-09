@@ -1,4 +1,4 @@
-package com.springpractice.dao.entites;
+package com.springpractice.dao.entites.main;
 
 import jakarta.persistence.*;
 

@@ -1,8 +1,7 @@
-package com.springpractice.dao.repository;
+package com.springpractice.dao.repository.main;
 
-import com.springpractice.dao.entites.UserAuthEntity;
+import com.springpractice.dao.entites.main.UserAuthEntity;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface CustomUserAuthRepository {

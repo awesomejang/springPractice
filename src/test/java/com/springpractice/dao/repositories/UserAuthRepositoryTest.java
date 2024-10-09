@@ -1,13 +1,13 @@
 package com.springpractice.dao.repositories;
 
-import com.springpractice.dao.entites.UserAuthEntity;
-import com.springpractice.dao.entites.UserMenuEntity;
-import com.springpractice.dao.entites.UserMenuMappingEntity;
+import com.springpractice.dao.entites.main.UserAuthEntity;
+import com.springpractice.dao.entites.main.UserMenuEntity;
+import com.springpractice.dao.entites.main.UserMenuMappingEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
 import com.springpractice.dao.enums.UserAuthGradeEnum;
-import com.springpractice.dao.repository.UserAuthRepository;
-import com.springpractice.dao.repository.UserMenuMappingRepository;
-import com.springpractice.dao.repository.UserMenuRepository;
+import com.springpractice.dao.repository.main.UserAuthRepository;
+import com.springpractice.dao.repository.main.UserMenuMappingRepository;
+import com.springpractice.dao.repository.main.UserMenuRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnitUtil;
@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
-import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

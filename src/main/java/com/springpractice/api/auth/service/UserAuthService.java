@@ -1,8 +1,7 @@
 package com.springpractice.api.auth.service;
 
-import com.springpractice.dao.entites.UserAuthEntity;
-import com.springpractice.dao.repository.UserAuthRepository;
-import com.springpractice.filter.WebLogFilter;
+import com.springpractice.dao.entites.main.UserAuthEntity;
+import com.springpractice.dao.repository.main.UserAuthRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

@@ -34,10 +34,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new RequestLogMdcInterceptor()).excludePathPatterns("/css/**", "/images/**", "/js/**");
     }
 
-//    public CommonConfiguration(JwtTokenProvider jwtTokenProvider) {
-//        this.jwtTokenProvider = jwtTokenProvider;
-//    }
-
     @Bean
     public FilterRegistrationBean<WebLogFilter> webLogFilterRegistrationBean() {
         FilterRegistrationBean<WebLogFilter> registrationBean = new FilterRegistrationBean<>();

@@ -1,6 +1,7 @@
-package com.springpractice.dao.entites;
+package com.springpractice.dao.entites.main;
 
 import com.springpractice.dao.converter.UserAuthGradeConverter;
+import com.springpractice.dao.entites.BaseTimeEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
 import com.springpractice.dao.enums.UserAuthGradeEnum;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user_auth")
 @Getter
-public class UserAuthEntity extends BaseTimeEntity{
+public class UserAuthEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

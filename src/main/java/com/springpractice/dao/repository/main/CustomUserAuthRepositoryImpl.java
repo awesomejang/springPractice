@@ -1,19 +1,17 @@
-package com.springpractice.dao.repository;
+package com.springpractice.dao.repository.main;
 
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.springpractice.dao.entites.QUserAuthEntity;
-import com.springpractice.dao.entites.UserAuthEntity;
+import com.springpractice.dao.entites.main.UserAuthEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
-import static com.springpractice.dao.entites.QUserAuthEntity.userAuthEntity;
+import static com.springpractice.dao.entites.main.QUserAuthEntity.userAuthEntity;
 
 @Repository
 public class CustomUserAuthRepositoryImpl implements CustomUserAuthRepository{

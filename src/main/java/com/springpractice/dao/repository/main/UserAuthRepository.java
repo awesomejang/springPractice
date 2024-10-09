@@ -1,6 +1,6 @@
-package com.springpractice.dao.repository;
+package com.springpractice.dao.repository.main;
 
-import com.springpractice.dao.entites.UserAuthEntity;
+import com.springpractice.dao.entites.main.UserAuthEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
