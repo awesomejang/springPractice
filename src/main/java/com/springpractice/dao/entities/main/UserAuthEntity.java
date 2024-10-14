@@ -1,7 +1,7 @@
-package com.springpractice.dao.entites.main;
+package com.springpractice.dao.entities.main;
 
 import com.springpractice.dao.converter.UserAuthGradeConverter;
-import com.springpractice.dao.entites.BaseTimeEntity;
+import com.springpractice.dao.entities.BaseTimeEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
 import com.springpractice.dao.enums.UserAuthGradeEnum;
 import jakarta.persistence.*;

@@ -1,8 +1,8 @@
 package com.springpractice.dao.repositories;
 
-import com.springpractice.dao.entites.main.UserAuthEntity;
-import com.springpractice.dao.entites.main.UserMenuEntity;
-import com.springpractice.dao.entites.main.UserMenuMappingEntity;
+import com.springpractice.dao.entities.main.UserAuthEntity;
+import com.springpractice.dao.entities.main.UserMenuEntity;
+import com.springpractice.dao.entities.main.UserMenuMappingEntity;
 import com.springpractice.dao.enums.AuthStatusEnum;
 import com.springpractice.dao.enums.UserAuthGradeEnum;
 import com.springpractice.dao.repository.main.UserAuthRepository;

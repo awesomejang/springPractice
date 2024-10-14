@@ -1,6 +1,6 @@
 package com.springpractice.dao.repositories;
 
-import com.springpractice.dao.entites.main.UserMenuMappingEntity;
+import com.springpractice.dao.entities.main.UserMenuMappingEntity;
 import com.springpractice.dao.repository.main.UserMenuMappingRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

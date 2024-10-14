@@ -1,6 +1,6 @@
-package com.springpractice.dao.entites.main;
+package com.springpractice.dao.entities.main;
 
-import com.springpractice.dao.entites.BaseTimeEntity;
+import com.springpractice.dao.entities.BaseTimeEntity;
 import jakarta.persistence.*;
 
 @Entity

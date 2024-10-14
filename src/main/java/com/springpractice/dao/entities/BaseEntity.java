@@ -1,4 +1,4 @@
-package com.springpractice.dao.entites;
+package com.springpractice.dao.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

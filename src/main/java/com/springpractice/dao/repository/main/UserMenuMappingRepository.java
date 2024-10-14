@@ -1,7 +1,7 @@
 package com.springpractice.dao.repository.main;
 
-import com.springpractice.dao.entites.main.UserAuthEntity;
-import com.springpractice.dao.entites.main.UserMenuMappingEntity;
+import com.springpractice.dao.entities.main.UserAuthEntity;
+import com.springpractice.dao.entities.main.UserMenuMappingEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
