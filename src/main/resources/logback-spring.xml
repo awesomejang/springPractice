@@ -1,5 +1,4 @@
 <configuration>
-
     <!-- 콘솔에 로그를 출력할 appender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -9,8 +8,23 @@
         </encoder>
     </appender>
 
-<!--    <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />-->
-<!--    <logger name="org.hibernate.SQL" level="TRACE" />-->
+    <SpringProfile name="local">
+        <logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    </SpringProfile>
+
+    <SpringProfile name="prod">
+        <logger name="org.hibernate.SQL" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.hibernate.orm.jdbc.bind" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    </SpringProfile>
 
     <!-- 루트 로거 설정 -->
     <root level="info">
