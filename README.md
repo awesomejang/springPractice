@@ -18,3 +18,6 @@ spring framework를 사용하며 여러 기능을 구현해 보고 학습하는 
 - logback, MDC를 활용한 로그 시인성 개선 
 - Entity Enum Converter 도입 작업 진행
 - ResponseBodyAdvice를 활용한 Response body custom
+- Spring Data JPA Auditing을 활용한 Entity 생성, 수정 시간 자동화
+- Spring Boot 3.x QueryDsl 초기화 설정
+- DB Connection 분리 및 DB별 entityManager, transactionManager 설정
