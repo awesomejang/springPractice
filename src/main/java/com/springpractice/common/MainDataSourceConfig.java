@@ -50,6 +50,4 @@ public class MainDataSourceConfig {
             @Qualifier("mainEntityManagerFactory") EntityManagerFactory mainEntityManagerFactory) {
             return new JpaTransactionManager(mainEntityManagerFactory);
     }
-
-
 }

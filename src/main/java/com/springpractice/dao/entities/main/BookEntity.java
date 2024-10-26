@@ -18,4 +18,16 @@ public class BookEntity {
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private AuthorEntity authorEntity;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public AuthorEntity getAuthorEntity() {
+        return authorEntity;
+    }
 }

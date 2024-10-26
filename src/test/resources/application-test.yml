@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    main-db:
+      jdbc-url: jdbc:h2:tcp://localhost/~/springPractice # TODO: 어째서 url -> jdbc-url로 바꿔야 datasource에서 인식???
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 10
+    second-db:
+      jdbc-url: jdbc:h2:tcp://localhost/~/springPractice_second
+      username: sa
+      password: sa
+      driver-class-name: org.h2.Driver
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        use_sql_comments: true
+        format_sql: true
+        show_sql: true
+        default_batch_fetch_size: 30
+#        jdbc:
+#          batch_size: 20 TODO: 쓰기(batch insert, update) 작업 시 한 번에 여러 레코드를 전송하여 성능을 최적화하는 설정입니다 예를 들어, batch_size가 30으로 설정되면 30개의 insert 또는 update 작업을 한 번에 수행합니다
+authentication-jwt:
+  key: "AAAAB3NzaC1yc2EAAAADAQABAAABgQDmiIuQSgbVUnks"
+  expiration-ms: 3600000 # ms
+  refresh-expiration-day: 7
+  key-pattern: "session:%s"

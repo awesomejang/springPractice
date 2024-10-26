@@ -17,6 +17,15 @@
         </logger>
     </SpringProfile>
 
+    <SpringProfile name="test">
+        <logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    </SpringProfile>
+
     <SpringProfile name="prod">
         <logger name="org.hibernate.SQL" level="INFO" additivity="false">
             <appender-ref ref="CONSOLE" />
