@@ -10,6 +10,7 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     @Query("SELECT BOOK FROM BookEntity BOOK JOIN FETCH BOOK.authorEntity")
+    // @BatchSize(size = 30)
     List<BookEntity> findBookEntityAll();
 
 }

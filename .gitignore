@@ -43,4 +43,5 @@ out/
 
 ### spring ###
 /src/main/resources/application.yml
+/src/test/resources/application-test.yml
 /src/main/generated/
