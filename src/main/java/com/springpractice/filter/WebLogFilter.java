@@ -41,7 +41,7 @@ public class WebLogFilter extends AbstractRequestLoggingFilter {
 
         if (!"GET".equalsIgnoreCase(request.getMethod())) {
             String requestBody = new String(cachedBodyHttpServletRequest.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-            logger.info("REQUEST BODY: {}", objectMapper.writeValueAsString(objectMapper.readValue(requestBody, Object.class)));
+            logger.info("REQUEST BODY: {}", !requestBody.isEmpty() ? objectMapper.writeValueAsString(objectMapper.readValue(requestBody, Object.class)) : requestBody);
         }
 //        logger.info("RESPONSE BODY: {}", new String(cachedBodyHttpServletResponse.getCachedContent(), StandardCharsets.UTF_8));
         logger.info("========================================");
