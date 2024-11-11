@@ -13,7 +13,7 @@ public class AsyncService {
     public void asyncMethod() {
         logger.debug("Async Method Start");
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             logger.error("Async Method Error", e);
         }
