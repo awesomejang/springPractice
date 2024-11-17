@@ -1,5 +1,6 @@
 package com.springpractice.common;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springpractice.filter.ApiTokenFilter;
 import com.springpractice.filter.WebLogFilter;
 import com.springpractice.handler.BearerTokenAnnotationResolver;
@@ -18,10 +19,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final BearerTokenAnnotationResolver bearerTokenAnnotationResolver;
     private final JwtTokenProvider jwtTokenProvider;
+    private final ObjectMapper objectMapper;
 
-    public WebConfig(BearerTokenAnnotationResolver bearerTokenAnnotationResolver, JwtTokenProvider jwtTokenProvider) {
+    public WebConfig(BearerTokenAnnotationResolver bearerTokenAnnotationResolver, JwtTokenProvider jwtTokenProvider, ObjectMapper objectMapper) {
         this.bearerTokenAnnotationResolver = bearerTokenAnnotationResolver;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<ApiTokenFilter> ApiTokenFilerRegistrationBean() {
         FilterRegistrationBean<ApiTokenFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new ApiTokenFilter(jwtTokenProvider));
+        registrationBean.setFilter(new ApiTokenFilter(jwtTokenProvider, objectMapper));
         registrationBean.addUrlPatterns("/api/*");
         registrationBean.setName("apiTokenFilter");
         registrationBean.setOrder(2);

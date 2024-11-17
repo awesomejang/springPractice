@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/common")
+@RequestMapping("/common")
 public class CommonController {
     private final AsyncExecService asyncExecService;
 

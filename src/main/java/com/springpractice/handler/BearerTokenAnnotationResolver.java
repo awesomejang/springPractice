@@ -1,6 +1,7 @@
 package com.springpractice.handler;
 
 import com.springpractice.common.annotation.BearerToken;
+import com.sun.jdi.request.InvalidRequestStateException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -34,7 +35,7 @@ public class BearerTokenAnnotationResolver implements HandlerMethodArgumentResol
         Object dto = parameter.getParameterType().getConstructor().newInstance();
 
         if (authorizationHeader == null) {
-            throw new NullPointerException("Authorization Header is null");
+            throw new InvalidRequestStateException("Authorization Info Not Exists");
         }
 
         if (!authorizationHeader.startsWith("Bearer ")) {

@@ -2,6 +2,8 @@ package com.springpractice.common.advice;
 
 import com.springpractice.dtos.CommonResponseDto;
 import com.springpractice.excetpions.InCorrectUserException;
+import com.springpractice.excetpions.UnauthorizedException;
+import com.sun.jdi.request.InvalidRequestStateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -20,6 +22,21 @@ public class RestExceptionControllerAdvice {
 
     public RestExceptionControllerAdvice(MessageSource messageSource) {
         this.messageSource = messageSource;
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<CommonResponseDto<Void>> unAuthorizedException(UnauthorizedException unauthorizedException) {
+        log.error("[UNAUTHORIZED EXCEPTION] {}", unauthorizedException.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(CommonResponseDto.fail(unauthorizedException.getMessage()));
+    }
+
+    @ExceptionHandler(InvalidRequestStateException.class)
+    public ResponseEntity<CommonResponseDto<Void>> invalidRequestStateException(InvalidRequestStateException exception) {
+        log.error("[INVALID REQUEST STATE EXCEPTION] {}", exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CommonResponseDto.fail(messageSource.getMessage("invalid.request.state", null, Locale.getDefault())));
     }
 
     @ExceptionHandler(InCorrectUserException.class)

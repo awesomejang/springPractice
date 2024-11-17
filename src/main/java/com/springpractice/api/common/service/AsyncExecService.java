@@ -10,13 +10,19 @@ public class AsyncExecService {
 
     private final Logger logger = LoggerFactory.getLogger(AsyncExecService.class);
 
-    @Async
+    @Async(value = "mainAsyncExecutor")
     public void asyncJob() throws InterruptedException {
         logger.info("AsyncExecService.asyncJob start");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         logger.info("AsyncExecService.asyncJob Step 1");
         Thread.sleep(3000);
+
+        logger.info("AsyncExecService.asyncJob Step 2");
+        Thread.sleep(2000);
+
+        logger.info("AsyncExecService.asyncJob Step 3");
+        Thread.sleep(2000);
 
         logger.info("AsyncExecService.asyncJob end");
     }
