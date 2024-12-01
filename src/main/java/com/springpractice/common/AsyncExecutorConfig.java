@@ -19,6 +19,8 @@ public class AsyncExecutorConfig {
         // 여기서 여러 전략을 선택 가능 다만 다른 쓰레드풀에서 작업을 처리하게 하는것 외에는 실행을 가능하게 하는 전략은 없다.
         // 필요에 의한 커스텀 전략이 필요할듯
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setAwaitTerminationMillis(30); // 프로세스 종료 시 큐에 남아있는 작업이 종료될때 까지 최대 30초 대기
+        executor.setWaitForTasksToCompleteOnShutdown(true); // 프로세스 종료시 대기 큐에 작업이 종료될 때까지 대기
         executor.initialize();
 
         return executor;
