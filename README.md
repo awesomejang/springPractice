@@ -21,3 +21,4 @@ spring framework를 사용하며 여러 기능을 구현해 보고 학습하는 
 - Spring Data JPA Auditing을 활용한 Entity 생성, 수정 시간 자동화
 - Spring Boot 3.x QueryDsl 초기화 설정
 - DB Connection 분리 및 DB별 entityManager, transactionManager 설정
+- Async 커스텀 쓰레드풀 세부 설정 분석
