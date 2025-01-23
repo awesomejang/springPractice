@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface UserMenuMappingRepository extends CrudRepository<UserMenuMappingEntity, Long>, CustomUserMenuMappingRepository {
+public interface UserMenuMappingRepository extends CrudRepository<UserMenuMappingEntity, Long>, UserMenuMappingCustomRepository {
 
     List<UserMenuMappingEntity> findMenuMappingByUserAuthEntity(UserAuthEntity userAuthEntity);
 

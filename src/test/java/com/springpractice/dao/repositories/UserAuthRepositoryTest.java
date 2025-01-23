@@ -19,15 +19,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 
 @SpringBootTest
 @Transactional
-@Profile("local") // TODO: logger debug로 하면 출력 안됨
+@ActiveProfiles("local")
+//@Profile("local") // TODO: logger debug로 하면 출력 안됨
 public class UserAuthRepositoryTest {
 
     private static final Logger logger = LoggerFactory.getLogger(UserAuthRepositoryTest.class);
@@ -120,5 +123,17 @@ public class UserAuthRepositoryTest {
         }else {
             throw new IllegalStateException("userMenuMappingEntities is not loaded");
         }
+    }
+
+    @Test
+    void testSelectUserAuthMappingQueryDsl() {
+
+        Optional<UserAuthEntity> userAuthRepositoryById = userAuthRepository.findById(33L);
+
+        List<UserMenuMappingEntity> userMenuMappingByListByUserId = userMenuMappingRepository.getUserMenuMappingByListByUserId(userAuthRepositoryById.get());
+
+
+
+
     }
 }
