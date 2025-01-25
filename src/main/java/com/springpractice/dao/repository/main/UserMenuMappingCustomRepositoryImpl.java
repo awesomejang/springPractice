@@ -27,13 +27,29 @@ public class UserMenuMappingCustomRepositoryImpl implements UserMenuMappingCusto
     @Override
     public List<UserMenuMappingEntity> getUserMenuMappingByListByUserId(UserAuthEntity userAuthEntity) {
         QUserMenuMappingEntity userMenuMappingEntity = QUserMenuMappingEntity.userMenuMappingEntity;
+
         return queryFactory.select(userMenuMappingEntity)
                         .from(userMenuMappingEntity)
                         .where(eqUserAuthId(userMenuMappingEntity, userAuthEntity.getId()))
                         .fetch();
     }
 
+    @Override
+    public List<Long> getMenuIdByMappingId(Long mappingId) {
+        QUserMenuMappingEntity userMenuMappingEntity = QUserMenuMappingEntity.userMenuMappingEntity;
+
+        return queryFactory.select(userMenuMappingEntity)
+                .from(userMenuMappingEntity) // TODO TUPLE
+                .where(userMenuMappingEntity.userAuthEntity.id.eq(mappingId))
+                .fetch()
+                .stream().map(entity -> entity.getUserMenuEntity().getId()).toList();
+    }
+
     private BooleanExpression eqUserAuthId(QUserMenuMappingEntity userMenuMappingEntity, Long id) {
         return userMenuMappingEntity.userAuthEntity.id.eq(id);
+    }
+
+    private BooleanExpression eqMappingId(QUserMenuMappingEntity userMenuMappingEntity, Long id) {
+        return userMenuMappingEntity.id.eq(id);
     }
 }

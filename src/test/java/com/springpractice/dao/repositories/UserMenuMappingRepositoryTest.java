@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.Objects;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("local")
 public class UserMenuMappingRepositoryTest {
 
     private final UserMenuMappingRepository userMenuMappingRepository;
@@ -31,9 +33,18 @@ public class UserMenuMappingRepositoryTest {
         assertThat(menuMappingByUserAuthEntityId).allMatch(Objects::nonNull);
 
         assertThat(menuMappingByUserAuthEntityId).allSatisfy(entity -> Assertions.assertEquals(33L, entity.getUserAuthEntity().getId()));
+    }
 
+    @Test
+    void testFindMenuMappingByUserAuthEntity_Id() {
+        List<Long> menuMappingByUserAuthEntity = userMenuMappingRepository.getMenuIdByMappingId(33L);
 
+        Assertions.assertFalse(menuMappingByUserAuthEntity.isEmpty());
 
-
+//        Assertions.assertFalse(menuMappingByUserAuthEntity.isEmpty());
+//
+//        assertThat(menuMappingByUserAuthEntity).allMatch(Objects::nonNull);
+//
+//        assertThat(menuMappingByUserAuthEntity).allSatisfy(entity -> Assertions.assertEquals(33L, entity.getUserAuthEntity().getId()));
     }
 }
