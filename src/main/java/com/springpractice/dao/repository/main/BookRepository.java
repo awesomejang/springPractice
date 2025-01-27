@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<BookEntity, Long> {
+public interface BookRepository extends JpaRepository<BookEntity, Long>, BookDslRepository{
 
     @Query("SELECT BOOK FROM BookEntity BOOK JOIN FETCH BOOK.authorEntity")
     // @BatchSize(size = 30)

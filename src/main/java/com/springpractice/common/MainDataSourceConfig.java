@@ -18,6 +18,10 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
+/**
+ * 평소에는 사용할 필요가 없다. @EnableAutoConfiguration(SpringBootApplication)이 메인 패키지 하위로 스캔 영역 지정
+ * 그래서 직접 Repository 스캔 영역을 지정할 필요가 있거나 다중 데이터소스를 사용할때 사용한다.
+ */
 @EnableJpaRepositories(
         basePackages = "com.springpractice.dao.repository.main",
         entityManagerFactoryRef = "mainEntityManagerFactory",
