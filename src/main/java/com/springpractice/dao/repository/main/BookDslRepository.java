@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface BookDslRepository {
 
-    Page<BookWithPaginationResponseDTO> findBookWithPagination(Pageable pageable);
+    Page<BookWithPaginationResponseDTO> findBookWithPagination(Pageable pageable, Long bookId);
 }
