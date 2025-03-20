@@ -38,6 +38,7 @@ public class BookDslRepositoryImpl implements BookDslRepository{
                 .limit(pageable.getPageSize()) // 한 페이지 크기
                 .fetch();
 
+
         // IDE warning 때문에 null 처리 했으나 결과 없을때 0L 리턴
         Long totalCount = Objects.requireNonNullElse(
                 queryFactory.select(bookEntity.count())
