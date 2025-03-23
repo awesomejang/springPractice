@@ -46,6 +46,13 @@ public class RestExceptionControllerAdvice {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CommonResponseDto.fail(messageSource.getMessage("incorrect.user.info", null, Locale.getDefault())));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<CommonResponseDto<Void>> runTimeException(RuntimeException exception) {
+//        log.error("Exception: {}", exception.getMessage());
+        log.error("Exception: ", exception);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CommonResponseDto.fail(exception.getMessage()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CommonResponseDto<Void>> handelException(Exception exception) {
 //        log.error("Exception: {}", exception.getMessage());

@@ -41,7 +41,7 @@ public class WebConfig implements WebMvcConfigurer {
     public FilterRegistrationBean<WebLogFilter> webLogFilterRegistrationBean() {
         FilterRegistrationBean<WebLogFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new WebLogFilter());
-        registrationBean.addUrlPatterns("/api/*");
+        registrationBean.addUrlPatterns("/api/v2/*");
         registrationBean.setName("webLogFilter");
         registrationBean.setOrder(1);
         return registrationBean;
@@ -51,7 +51,7 @@ public class WebConfig implements WebMvcConfigurer {
     public FilterRegistrationBean<ApiTokenFilter> ApiTokenFilerRegistrationBean() {
         FilterRegistrationBean<ApiTokenFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new ApiTokenFilter(jwtTokenProvider, objectMapper));
-        registrationBean.addUrlPatterns("/api/*");
+        registrationBean.addUrlPatterns("/api/v2/*");
         registrationBean.setName("apiTokenFilter");
         registrationBean.setOrder(2);
         return registrationBean;

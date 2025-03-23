@@ -1,5 +1,6 @@
 package com.springpractice.dao.entities.main;
 
+import com.springpractice.api.inventory.dto.ProductInventoryResDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class ProductInventoryEntity {
     private BigDecimal unitPrice;
 
     // 낙관적 락(Optimistic Lock)을 위한 버전 필드
-    @Version
+//    @Version
     private Long version;
 
     public ProductInventoryEntity(String productCode, String productName, Integer quantity, BigDecimal unitPrice) {
@@ -50,5 +51,15 @@ public class ProductInventoryEntity {
         }
 
         this.quantity -= amount;
+    }
+
+    public ProductInventoryResDto toResDto() {
+        return ProductInventoryResDto.builder()
+                .id(this.idx)
+                .productCode(this.productCode)
+                .productName(this.productName)
+                .quantity(this.quantity)
+                .unitPrice(this.unitPrice)
+                .build();
     }
 }
